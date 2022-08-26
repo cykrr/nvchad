@@ -20,6 +20,14 @@ M.general = {
   },
 
   n = {
+    ["<leader>Q"] = {":q!<CR>", "quit"},
+    ["L"] = {":", "gpd"},
+    ["<leader>-"] = {":sp<CR>", "split"},
+    ["<leader>="] = {":vs<CR>", "vsplit"},
+    ["<A-j>"] = {"<C-w>-", "resize down"},
+    ["<A-k>"] = {"<C-w>+", "resize up"},
+    ["<A-h>"] = {"<C-w><", "resize down"},
+    ["<A-l>"] = {"<C-w>>", "resize down"},
     ["<ESC>"] = { "<cmd> noh <CR>", "no highlight" },
 
     -- switch between windows
@@ -303,7 +311,7 @@ M.nvterm = {
       "toggle floating term",
     },
 
-    ["<A-h>"] = {
+    ["<A-b>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
@@ -327,7 +335,7 @@ M.nvterm = {
       "toggle floating term",
     },
 
-    ["<A-h>"] = {
+    ["<A-b>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
