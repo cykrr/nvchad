@@ -20,19 +20,19 @@ local plugins = {
       }
     end
   },
-  ['aserowy/tmux.nvim'] = {
-    event = "InsertEnter",
-    config = function()
-      require'tmux'.setup {
-        copy_sync = {
-          enable = true
-        },
-        resize = {
-          enable_default_keybindings = true
-        }
-      }
-    end
-  },
+--  ['aserowy/tmux.nvim'] = {
+--    event = "InsertEnter",
+--    config = function()
+--      require'tmux'.setup {
+--        copy_sync = {
+--          enable = true
+--        },
+--        resize = {
+--          enable_default_keybindings = true
+--        }
+--      }
+--    end
+--  },
 
   ['plasticboy/vim-markdown'] = {
     ft = {"md", "markdown"},
