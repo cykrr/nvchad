@@ -29,14 +29,14 @@ M.general = {
     ["<C-k>"] = { "<C-w>k", "window up" },
 
     -- save
-    ["<C-s>"] = { "<cmd> w <CR>", "save file" },
+    ["<leader>w"] = { "<cmd> w <CR>", "save file" },
 
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "copy whole file" },
 
     -- line numbers
-    ["<leader>n"] = { "<cmd> set nu! <CR>", "toggle line number" },
-    ["<leader>rn"] = { "<cmd> set rnu! <CR>", "toggle relative number" },
+--    ["<leader>n"] = { "<cmd> set nu! <CR>", "toggle line number" },
+--    ["<leader>rn"] = { "<cmd> set rnu! <CR>", "toggle relative number" },
 
     -- update nvchad
     ["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "update nvchad" },
@@ -231,14 +231,14 @@ M.lspconfig = {
       "lsp formatting",
     },
 
-    ["<leader>wa"] = {
+    ["<leader>aw"] = {
       function()
         vim.lsp.buf.add_workspace_folder()
       end,
       "add workspace folder",
     },
 
-    ["<leader>wr"] = {
+    ["<leader>rw"] = {
       function()
         vim.lsp.buf.remove_workspace_folder()
       end,
@@ -259,7 +259,7 @@ M.nvimtree = {
 
   n = {
     -- toggle
-    ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
+    ["<leader>n"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
 
     -- focus
     ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "focus nvimtree" },
