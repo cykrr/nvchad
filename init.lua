@@ -12,3 +12,6 @@ local install_path = fn.stdpath "data" .. "/site/pack/packer/opt/packer.nvim"
 pcall(require, "custom")
 
 require("core.utils").load_mappings()
+
+
+vim.g.vim_markdown_fenced_languages = {'html', 'python', 'lua', 'cpp', 'typescript', 'javascript', 'java'}
