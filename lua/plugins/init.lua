@@ -1,7 +1,55 @@
 vim.cmd "packadd packer.nvim"
 
 local plugins = {
+  ['jubnzv/mdeval.nvim'] = {
+    ft = {"md", "markdown"},
+    config = function ()
+      require'mdeval'.setup {
+        require_confirmation = false,
+        eval_options = {
+          cpp = {
+            command = {"g++", "-std=c++20"},
+            default_header = [[
+            #include <iostream>
+            ]]
+          },
+          python = {
+            command = {"python"}
+          }
+        }
+      }
+    end
+  },
+  ['aserowy/tmux.nvim'] = {
+    event = "InsertEnter",
+    config = function()
+      require'tmux'.setup {
+        copy_sync = {
+          enable = true
+        },
+        resize = {
+          enable_default_keybindings = true
+        }
+      }
+    end
+  },
 
+  ['plasticboy/vim-markdown'] = {
+    ft = {"md", "markdown"},
+    config = function()
+      vim.g.vim_markdown_folding_disabled = 1
+      vim.g.vim_markdown_conceal = 1
+      vim.g.vim_markdown_math = 1
+      vim.g.vim_markdown_strikethrough = 1
+      vim.g.vim_markdown_toc_autofit = 1
+    end
+
+  },
+  ["mfussenegger/nvim-jdtls"] = {ft = "java"},
+  ["iamcco/markdown-preview.nvim"] = {
+    ft = {"md", "markdown"},
+    run = "cd app && yarn install",
+  },
   ["nvim-lua/plenary.nvim"] = { module = "plenary" },
   ["wbthomason/packer.nvim"] = {
     cmd = require("core.lazy_load").packer_cmds,
