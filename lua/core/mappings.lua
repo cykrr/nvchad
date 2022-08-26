@@ -245,7 +245,7 @@ M.lspconfig = {
       "remove workspace folder",
     },
 
-    ["<leader>wl"] = {
+    ["<leader>lw"] = {
       function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end,
