@@ -78,4 +78,8 @@ lspconfig.clangd.setup {
 lspconfig.pyright.setup {
   on_attach = M.on_attach
 }
+
+lspconfig.marksman.setup {
+  on_attach = M.on_attach
+}
 return M
