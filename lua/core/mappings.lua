@@ -20,6 +20,8 @@ M.general = {
   },
 
   n = {
+    ["<leader>td"] = {":Telescope fd<CR>", "Telescope current dir"},
+    ["<leader>mp"] = {":MarkdownPreviewToggle<CR>", "markdown preview"},
     ["<leader>Q"] = {":q!<CR>", "quit"},
     ["L"] = {":", "gpd"},
     ["<leader>-"] = {":sp<CR>", "split"},
