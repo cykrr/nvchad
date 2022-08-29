@@ -192,6 +192,7 @@ local plugins = {
     cmd = require("core.lazy_load").mason_cmds,
     config = function()
       require "plugins.configs.mason"
+      require ("plugins/configs/mason")
     end,
   },
 
