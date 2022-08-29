@@ -27,6 +27,11 @@ local options = {
     side = "left",
     width = 25,
     hide_root_folder = true,
+    mappings = {
+      list = {
+        {key = "n", action = "create"}
+      }
+    }
   },
   git = {
     enable = false,
