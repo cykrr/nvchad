@@ -6,7 +6,8 @@ local plugins = {
     config = function()
       require("null-ls").setup({
         sources = {
-          require"null-ls".builtins.diagnostics.markdownlint
+          require"null-ls".builtins.diagnostics.markdownlint,
+          require"null-ls".builtins.formatting.prettier
         },
         update_in_insert = true,
         debounce = 200,
