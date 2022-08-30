@@ -20,6 +20,7 @@ M.general = {
   },
 
   n = {
+    ["<leader>ts"] = {":Telescope lsp_document_symbols<CR>", "Telescope document syms"},
     ["<leader>td"] = {":Telescope fd<CR>", "Telescope current dir"},
     ["<leader>mp"] = {":MarkdownPreviewToggle<CR>", "markdown preview"},
     ["<leader>Q"] = {":q!<CR>", "quit"},
