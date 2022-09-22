@@ -20,6 +20,11 @@ M.general = {
   },
 
   n = {
+    ["<leader>Bf"] = {
+      function ()
+        vim.lsp.buf.formatting();
+      end
+    },
     ["<leader>ts"] = {":Telescope lsp_document_symbols<CR>", "Telescope document syms"},
     ["<leader>td"] = {":Telescope fd<CR>", "Telescope current dir"},
     ["<leader>mp"] = {":MarkdownPreviewToggle<CR>", "markdown preview"},
