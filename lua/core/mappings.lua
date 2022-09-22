@@ -60,8 +60,15 @@ M.general = {
     ["<leader>tt"] = {
       function()
         require("base46").toggle_theme()
+        io.popen("bash -c '/home/krr/.local/bin/stTheme>/dev/null'")
       end,
       "toggle theme",
+    },
+    ["<leader>tT"] = {
+      function()
+        require("base46").toggle_transparency()
+      end,
+      "toggle transparency",
     },
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
