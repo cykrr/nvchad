@@ -57,6 +57,13 @@ M.general = {
     -- update nvchad
     ["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "update nvchad" },
 
+    ["<leader>Tt"] = {
+      function()
+        require("base46").toggle_theme()
+      end,
+      "toggle theme",
+    },
+
     ["<leader>tt"] = {
       function()
         require("base46").toggle_theme()
