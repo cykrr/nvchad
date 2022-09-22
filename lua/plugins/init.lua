@@ -17,11 +17,11 @@ local plugins = {
           'class',
           'function',
           'method',
-           'for',
-           'while',
-           'if',
-           'switch',
-           'case',
+           -- 'for',
+           -- 'while',
+           -- 'if',
+           -- 'switch',
+           -- 'case',
         },
         -- Example for a specific filetype.
         -- If a pattern is missing, *open a PR* so everyone can benefit.
@@ -46,19 +46,31 @@ local plugins = {
     end,
   },
 
-  ['jose-elias-alvarez/null-ls.nvim'] = {
+  ["tpope/vim-markdown"] = { 
     ft = {"md", "markdown"},
+    config = function ()
+      vim.g.markdown_folding = true
+    end,
+},
+
+-- Used for markdownlint
+  ['jose-elias-alvarez/null-ls.nvim'] = {
+    ft = {"md", "markdown", "python"},
     config = function()
       require("null-ls").setup({
         sources = {
           require"null-ls".builtins.diagnostics.markdownlint,
-          require"null-ls".builtins.formatting.prettier
+          require"null-ls".builtins.formatting.prettier,
+--          require"null-ls".builtins.diagnostics.pylint,
+          require"null-ls".builtins.formatting.black
         },
         update_in_insert = true,
         debounce = 200,
       })
     end,
   },
+
+-- Runs code on markdown code fences
   ['jubnzv/mdeval.nvim'] = {
     ft = {"md", "markdown"},
     config = function ()
@@ -78,6 +90,8 @@ local plugins = {
       }
     end
   },
+
+-- Disabled
 --  ['aserowy/tmux.nvim'] = {
 --    event = "InsertEnter",
 --    config = function()
@@ -92,29 +106,25 @@ local plugins = {
 --    end
 --  },
 
-  ['plasticboy/vim-markdown'] = {
-    ft = {"md", "markdown"},
-    config = function()
-      vim.g.vim_markdown_folding_disabled = 1
-      vim.g.vim_markdown_conceal = 1
-      vim.g.vim_markdown_math = 1
-      vim.g.vim_markdown_strikethrough = 1
-      vim.g.vim_markdown_toc_autofit = 1
-    end
-
-  },
-  ["mfussenegger/nvim-jdtls"] = {ft = "java"},
+-- Live viewer of markdown documents
   ["iamcco/markdown-preview.nvim"] = {
     ft = {"md", "markdown"},
     run = "cd app && yarn install",
   },
-  ["nvim-lua/plenary.nvim"] = { module = "plenary" },
+
+  ["mfussenegger/nvim-jdtls"] = {ft = "java"},
+
+
+-- Package Manager
   ["wbthomason/packer.nvim"] = {
     cmd = require("core.lazy_load").packer_cmds,
     config = function()
       require "plugins"
     end,
   },
+
+-- NvChad stuff
+-- nvchad
   ["NvChad/extensions"] = { module = { "telescope", "nvchad" } },
 
   ["NvChad/base46"] = {
@@ -144,6 +154,16 @@ local plugins = {
     end,
   },
 
+  ["NvChad/nvim-colorizer.lua"] = {
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open "nvim-colorizer.lua"
+    end,
+    config = function()
+      require("plugins.configs.others").colorizer()
+    end,
+  },
+-- icons
   ["kyazdani42/nvim-web-devicons"] = {
     after = "ui",
     module = "nvim-web-devicons",
@@ -152,6 +172,22 @@ local plugins = {
     end,
   },
 
+-- Display key helper
+  ["folke/which-key.nvim"] = {
+    -- Only load whichkey after all the gui
+
+    -- disable = true,
+    module = "which-key",
+    keys = "<leader>",
+    config = function()
+      require "plugins.configs.whichkey"
+    end,
+    setup = function()
+      require("core.utils").load_mappings "whichkey"
+    end,
+  },
+
+-- Shows start and end of code blocks
   ["lukas-reineke/indent-blankline.nvim"] = {
     opt = true,
     setup = function()
@@ -163,16 +199,7 @@ local plugins = {
     end,
   },
 
-  ["NvChad/nvim-colorizer.lua"] = {
-    opt = true,
-    setup = function()
-      require("core.lazy_load").on_file_open "nvim-colorizer.lua"
-    end,
-    config = function()
-      require("plugins.configs.others").colorizer()
-    end,
-  },
-
+-- Dependency
   ["nvim-treesitter/nvim-treesitter"] = {
     module = "nvim-treesitter",
     setup = function()
@@ -185,7 +212,8 @@ local plugins = {
     end,
   },
 
-  -- git stuff
+-- Git Signs
+  -- Git Signs
   ["lewis6991/gitsigns.nvim"] = {
     ft = "gitcommit",
     setup = function()
@@ -196,13 +224,13 @@ local plugins = {
     end,
   },
 
+-- Mason & LSPConfig
   -- lsp stuff
 
   ["williamboman/mason.nvim"] = {
     cmd = require("core.lazy_load").mason_cmds,
     config = function()
       require "plugins.configs.mason"
-      require ("plugins/configs/mason")
     end,
   },
 
@@ -216,6 +244,7 @@ local plugins = {
     end,
   },
 
+-- LuaSnips & cmp
   -- load luasnips + cmp related in insert mode only
 
   ["rafamadriz/friendly-snippets"] = {
@@ -256,6 +285,7 @@ local plugins = {
 
   ["hrsh7th/cmp-path"] = {
     after = "cmp-buffer",
+
   },
 
   -- misc plugins
@@ -263,6 +293,12 @@ local plugins = {
     after = "nvim-cmp",
     config = function()
       require("plugins.configs.others").autopairs()
+      local Rule = require("nvim-autopairs.rule")
+      local ap = require("nvim-autopairs")
+      ap.add_rule(Rule("$", "$", "markdown"))
+      ap.add_rule(Rule("*", "*", "markdown"))
+
+
     end,
   },
 
@@ -307,18 +343,7 @@ local plugins = {
     end,
   },
 
-  -- Only load whichkey after all the gui
-  ["folke/which-key.nvim"] = {
-    disable = true,
-    module = "which-key",
-    keys = "<leader>",
-    config = function()
-      require "plugins.configs.whichkey"
-    end,
-    setup = function()
-      require("core.utils").load_mappings "whichkey"
-    end,
-  },
+  ["nvim-lua/plenary.nvim"] = { module = "plenary" },
 
   -- Speed up deffered plugins
   ["lewis6991/impatient.nvim"] = {},
