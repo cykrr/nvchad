@@ -92,7 +92,13 @@ M.general = {
     },
   },
 
-  t = { ["<C-x>"] = { termcodes "<C-\\><C-N>", "escape terminal mode" } },
+  t = {
+    ["<C-x>"] = { termcodes "<C-\\><C-N>", "escape terminal mode" },
+    ["<C-h>"] = { "<C-\\><C-N><C-w>h", "window left" },
+    ["<C-l>"] = { "<C-\\><C-N><C-w>l", "window right" },
+    ["<C-j>"] = { "<C-\\><C-N><C-w>j", "window down" },
+    ["<C-k>"] = { "<C-\\><C-N><C-w>k", "window up" },
+  },
 
   v = {
     ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
