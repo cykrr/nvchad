@@ -82,4 +82,8 @@ lspconfig.pyright.setup {
 lspconfig.marksman.setup {
   on_attach = M.on_attach
 }
+
+lspconfig.cssls.setup {
+  on_attach = M.on_attach
+}
 return M
