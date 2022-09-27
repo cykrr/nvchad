@@ -133,6 +133,7 @@ local plugins = {
 
       if ok then
         base46.load_theme()
+        base46.toggle_transparency();
       end
     end,
   },
